@@ -7,6 +7,7 @@ let async = require('async');
 
 let query = require('./lib/query')
 let submitQuery = query.submitQuery;
+let getResults = query.getQueryResults;
 
 /* Setup tables for planet querying */
 function setup () {
@@ -33,4 +34,17 @@ function setup () {
   })
 }
 
+let testString = fs.readFileSync(path.join(__dirname, 'sql', 'queries', 'test.sql')).toString();
 
+submitQuery({
+  queryName: 'test',
+  queryString: tmpl(testString, {DATABASE: process.env.ATHENA_PREFIX}),
+}, function (err, queryId) {
+  if (err) console.log(err);
+  else {
+    getResults(queryId, function (err, rows) {
+      if (err) console.log(err);
+      else rows.forEach((row) => console.log(row.join(', ')));
+    });
+  }
+})
