@@ -1,50 +1,47 @@
 require('dotenv').config();
 
-let fs = require('fs');
-let tmpl = require('maxstache');
-let path = require('path');
-let async = require('async');
+let ora = require('ora');
+let Table = require('cli-table');
 
-let query = require('./lib/query')
-let submitQuery = query.submitQuery;
-let getResults = query.getQueryResults;
+function worldwide(opts) {
+  if (!(this instanceof worldwide)) return new worldwide(opts);
+  let outputBucket = opts.outputBucket || process.env.AWS_OUTPUT_BUCKET || 's3://mrww_athena_output';
 
-/* Setup tables for planet querying */
-function setup () {
-  let setupStatements = fs.readdirSync(path.join(__dirname, 'sql', 'setup'))
-    .map(function (filename) {
-      let template =  fs
-        .readFileSync(path.join(__dirname, 'sql', 'setup', filename))
-        .toString();
-
-      return {
-        queryString: tmpl(template, {DATABASE: process.env.ATHENA_PREFIX}),
-        queryName: path.basename(filename, '.sql')
-      }
-    })
-
-  setupStatements.unshift({
-    queryName: 'setup_database',
-    queryString: `CREATE DATABASE IF NOT EXISTS ${process.env.ATHENA_PREFIX}`
+  this.query = require('./lib/query')({
+    credentials: {
+      accessKeyId: opts.accessKeyId || process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: opts.secretAccessKey || process.env.AWS_SECRET_ACCESS_KEY
+    },
+    region: opts.region || process.env.AWS_REGION || 'us-east-1',
+    outputBucket
   });
+}
 
-  async.mapSeries(setupStatements, submitQuery, function (err, results) {
-    if (err) console.log(err);
-    else console.log("Setup complete");
+worldwide.prototype.runQuery = function (sql, callback) {
+  let mrww = this;
+  let spinner = ora('Running query').start();
+
+  mrww.query.submitQuery(sql, function (err, queryId) {
+    if (err) {
+      spinner.fail(err);
+    }
+    else {
+      spinner.text = 'Reading output';
+      mrww.query.getQueryResults(queryId, function (err, rows) {
+        if (err) {
+          spinner.fail(err);
+        }
+        else {
+          spinner.succeed();
+          let table = new Table({
+            head: rows.shift()
+          })
+          rows.forEach(row => table.push(row));
+          console.log(table.toString());
+        }
+      })
+    }
   })
 }
 
-let testString = fs.readFileSync(path.join(__dirname, 'sql', 'queries', 'test.sql')).toString();
-
-submitQuery({
-  queryName: 'test',
-  queryString: tmpl(testString, {DATABASE: process.env.ATHENA_PREFIX}),
-}, function (err, queryId) {
-  if (err) console.log(err);
-  else {
-    getResults(queryId, function (err, rows) {
-      if (err) console.log(err);
-      else rows.forEach((row) => console.log(row.join(', ')));
-    });
-  }
-})
+module.exports = worldwide;
