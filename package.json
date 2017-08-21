@@ -1,6 +1,6 @@
 {
   "name": "mrworldwide",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Calculate OSM stats with AWS Athena and OSM PDS",
   "main": "index.js",
   "license": "MIT",
