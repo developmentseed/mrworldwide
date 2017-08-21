@@ -1,4 +1,6 @@
-🌍 `mrworldwide` is a command line tool that queries the [AWS OSM public datasets](https://aws.amazon.com/public-datasets/osm/).
+# 🌍 mrworldwide [![npm version](https://badge.fury.io/js/mrworldwide.svg)](https://badge.fury.io/js/mrworldwide)
+
+Command line tool that queries the [AWS OSM public datasets](https://aws.amazon.com/public-datasets/osm/).
 
 ## Installation
 ```
