@@ -20,6 +20,12 @@ async@^2.4.1:
   dependencies:
     lodash "^4.14.0"
 
+async@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.5.0.tgz#843190fd6b7357a0b9e1c956edddd5ec8462b54d"
+  dependencies:
+    lodash "^4.14.0"
+
 aws-sdk@^2.74.0:
   version "2.74.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.74.0.tgz#dbb128d274c1a049904a7cd8ce4a395a6a77af4d"
@@ -34,9 +40,32 @@ aws-sdk@^2.74.0:
     xml2js "0.4.17"
     xmlbuilder "4.2.1"
 
+aws-sdk@^2.94.0:
+  version "2.101.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.101.0.tgz#1252c364b840eba1ae0b8cd8c1accf78bfa14d96"
+  dependencies:
+    buffer "4.9.1"
+    crypto-browserify "1.0.9"
+    events "^1.1.1"
+    jmespath "0.15.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    uuid "3.0.1"
+    xml2js "0.4.17"
+    xmlbuilder "4.2.1"
+
 base64-js@^1.0.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.2.0.tgz#a39992d723584811982be5e290bb6a53d86700f1"
+
+buffer@4.9.1:
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/buffer/-/buffer-4.9.1.tgz#6d1bb601b07a4efced97094132093027c95bc298"
+  dependencies:
+    base64-js "^1.0.2"
+    ieee754 "^1.1.4"
+    isarray "^1.0.0"
 
 buffer@5.0.6:
   version "5.0.6"
@@ -118,6 +147,10 @@ escape-string-regexp@^1.0.2:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
+events@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
+
 find-up@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-1.1.2.tgz#6b2e9822b1a2ce0a60ab64d610eccad53cb24d0f"
@@ -177,9 +210,25 @@ is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
 
+isarray@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
+
 jmespath@0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.15.0.tgz#a3f222a9aae9f966f5d27c796510e28091764217"
+
+little-owl@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/little-owl/-/little-owl-0.2.0.tgz#0852e4fabb21af489a4180c56f0ec9e617d5dd8a"
+  dependencies:
+    async "^2.5.0"
+    aws-sdk "^2.94.0"
+    cli-table "^0.3.1"
+    dotenv "^4.0.0"
+    get-stdin "^5.0.1"
+    meow "^3.7.0"
+    ora "^1.3.0"
 
 load-json-file@^1.0.0:
   version "1.1.0"

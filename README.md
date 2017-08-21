@@ -16,19 +16,19 @@ Currently to use the `query` command you should manually setup an Athena databas
 - `AWS_OUTPUT_BUCKET`: Bucket where query results are stored
 
 ### API 
-The cli is aliased to `mrww`
+The cli is aliased to `worldwide`
 
 ```
 Usage
-  $ mrww query <sql>
-  $ echo <sql> | mrww query
+  $ worldwide query <sql>
+  $ echo <sql> | worldwide query
 
 Examples
-  $ mrww query "SELECT count(*) from osm.changesets"
+  $ worldwide query "SELECT count(*) from osm.changesets"
 ```
 
 ## Built With
-Under the hood, `mrworldwide` uses Amazon Athena and Presto queries to query the data.
+Under the hood, `mrworldwide` uses Amazon Athena and [`little-owl`](https://github.com/developmentseed/little-owl) to run queries.
 
 ## License
 MIT - See [LICENSE.md](LICENSE.md)
