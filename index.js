@@ -2,7 +2,7 @@ require('dotenv').config();
 
 function worldwide(opts) {
   if (!(this instanceof worldwide)) return new worldwide(opts);
-  let outputBucket = opts.outputBucket || process.env.AWS_OUTPUT_BUCKET || 's3://mrww_athena_output';
+  let outputBucket = opts.outputBucket || process.env.AWS_OUTPUT_BUCKET || 's3://mrww-athena-output';
 
   this._query = require('little-owl')({
     accessKeyId: opts.accessKeyId || process.env.AWS_ACCESS_KEY_ID,
