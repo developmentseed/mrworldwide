@@ -7,7 +7,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS {{DATABASE}}.planet (
   nds ARRAY<STRUCT<ref: BIGINT>>,
   members ARRAY<STRUCT<type: STRING, ref: BIGINT, role: STRING>>,
   changeset BIGINT,
-  timestamp TIMESTAMP,
+  `timestamp` TIMESTAMP,
   uid BIGINT,
   user STRING,
   version BIGINT
